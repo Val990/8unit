@@ -64,18 +64,18 @@ public class DataGenerator {
     @SneakyThrows
     public static void cleanData() {
         var runner = new QueryRunner();
-        var cleanUserSQL = "DELETE FROM users";
-        var cleanCardSQL = "DELETE FROM cards";
         var cleanAuth_codes = "DELETE FROM auth_codes";
-        var cleanCardTransactions = "DELETE FROM cardsTransactions";
+        var cleanCardTransactions = "DELETE FROM card_transactions";
+        var cleanCardSQL = "DELETE FROM cards";
+        var cleanUsers = "DELETE FROM users";
 
         try (
                 var connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/app", "app", "pass");
         ) {
-            runner.execute(connection, cleanUserSQL);
-            runner.execute(connection, cleanCardSQL);
             runner.execute(connection, cleanAuth_codes);
             runner.execute(connection, cleanCardTransactions);
+            runner.execute(connection, cleanCardSQL);
+            runner.execute(connection, cleanUsers);
         }
 
 
