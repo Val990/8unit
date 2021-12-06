@@ -3,6 +3,7 @@ package ru.netology.page;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.github.javafaker.Faker;
+import org.openqa.selenium.Keys;
 import ru.netology.data.DataGenerator;
 
 import static com.codeborne.selenide.Condition.visible;
@@ -36,14 +37,19 @@ public class LoginPage {
         $(withText("Ошибка")).shouldBe(Condition.visible);
     }
 
-    public void invalidPassword(DataGenerator.AuthInfo info) {
+    public void invalidPassword3Times(DataGenerator.AuthInfo info) {
         Faker faker = new Faker();
         login.setValue(info.getLogin());
         password.setValue(faker.internet().password());
         loginButton.click();
-        $(withText("Ошибка")).shouldBe(Condition.visible);
+        password.sendKeys(Keys.DELETE);
+        password.setValue(faker.internet().password());
+        loginButton.click();
+        password.sendKeys(Keys.DELETE);
+        password.setValue(faker.internet().password());
+        loginButton.click();
+        $(withText("Превышено число попыток")).shouldBe(Condition.visible);
     }
-
 
 }
 

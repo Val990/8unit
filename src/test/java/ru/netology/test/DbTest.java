@@ -46,12 +46,11 @@ public class DbTest {
     }
 
     @Test
-    void shouldSendWrongPassword() {
+    void shouldSendWrongPassword3Times() {
         var loginPage = new LoginPage();
         var authInfo = DataGenerator.getAuthInfo();
         var invalidPassword = DataGenerator.getInvalidPassword();
-        loginPage.invalidPassword(DataGenerator.getInvalidPassword());
+        loginPage.invalidPassword3Times(DataGenerator.getInvalidPassword());
     }
-
 }
 
