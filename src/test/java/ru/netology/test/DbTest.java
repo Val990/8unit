@@ -21,17 +21,37 @@ public class DbTest {
     }
 
     @Test
-     void shouldSendRequestMultipleTimes() {
+    void shouldSendRequestHappyPath() {
         var loginPage = new LoginPage();
         var authInfo = DataGenerator.getAuthInfo();
         var verificationPage = loginPage.validLogin(authInfo);
         var verificationCode = DataGenerator.getVerificationCode();
         verificationPage.validVerify(verificationCode);
-
     }
 
+    @Test
+    void shouldSendWrongCode() {
+        var loginPage = new LoginPage();
+        var authInfo = DataGenerator.getAuthInfo();
+        var verificationPage = loginPage.validLogin(authInfo);
+        verificationPage.invalidVerify(DataGenerator.getInvalidCode().getCode());
+    }
 
+    @Test
+    void shouldSendWrongLogin() {
+        var loginPage = new LoginPage();
+        var authInfo = DataGenerator.getAuthInfo();
+        var invalidLogin = DataGenerator.getInvalidLogin();
+        loginPage.invalidLogin(DataGenerator.getInvalidLogin());
+    }
+
+    @Test
+    void shouldSendWrongPassword() {
+        var loginPage = new LoginPage();
+        var authInfo = DataGenerator.getAuthInfo();
+        var invalidPassword = DataGenerator.getInvalidPassword();
+        loginPage.invalidPassword(DataGenerator.getInvalidPassword());
+    }
 
 }
-
 

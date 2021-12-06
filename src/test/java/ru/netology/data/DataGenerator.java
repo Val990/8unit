@@ -27,7 +27,7 @@ public class DataGenerator {
         return new AuthInfo("petya", "123qwerty");
     }
 
-    /*public static AuthInfo getInvalidLogin() {
+   public static AuthInfo getInvalidLogin() {
         Faker faker = new Faker();
         return new AuthInfo(faker.name().username(), "qwerty123");
     }
@@ -35,7 +35,7 @@ public class DataGenerator {
     public static AuthInfo getInvalidPassword() {
         Faker faker = new Faker();
         return new AuthInfo("vasya", faker.internet().password());
-    }*/
+    }
 
     @Value
     public static class VerificationCode { // 2 - ввод кода смс
@@ -56,10 +56,8 @@ public class DataGenerator {
     }
 
     public static VerificationCode getInvalidCode() {
-        Faker faker = new Faker();
-        return new VerificationCode(faker.numerify("######"));
+        return new VerificationCode("12345");
     }
-
 
     @SneakyThrows
     public static void cleanData() {

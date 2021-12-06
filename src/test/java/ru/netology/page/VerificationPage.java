@@ -11,19 +11,18 @@ public class VerificationPage {
     private SelenideElement codeField = $("[data-test-id='code'] input");
     private SelenideElement verifyButton = $("[data-test-id='action-verify']");
 
-    public VerificationPage() { //новый конструктор verificationpage, обращается к codefield
+    public VerificationPage() {
         codeField.shouldBe(visible);
     }
     public DashboardPage validVerify(DataGenerator.VerificationCode verificationCode) {
-        codeField.setValue(verificationCode.getCode());  // заполняем смс,
-        verifyButton.click();  // нажимаем продолжить
+        codeField.setValue(verificationCode.getCode());
+        verifyButton.click();
         return new DashboardPage();
     }
 
     public void invalidVerify(String verificationCode) {
-        codeField.setValue(verificationCode);  // заполняем смс,
-        verifyButton.click();  // нажимаем продолжить
+        codeField.setValue(verificationCode);
+        verifyButton.click();
         $(withText("Ошибка")).shouldBe(visible);
     }
-
 }
